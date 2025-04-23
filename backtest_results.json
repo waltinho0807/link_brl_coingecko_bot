@@ -1,0 +1,72 @@
+{
+  "summary": {
+    "symbol": "chainlink",
+    "currency": "brl",
+    "totalTrades": 6,
+    "wins": 4,
+    "winRate": "66.67",
+    "totalProfit": "14.62"
+  },
+  "operations": [
+    {
+      "entryDate": "2025-04-02",
+      "entryPrice": 73.09101658892828,
+      "exitDate": "2025-04-03",
+      "exitPrice": 70.39589149555631,
+      "amount": 1.3681571917710589,
+      "pnl": "-3.69",
+      "pnlPercent": "-3.69",
+      "result": "❌ prejuízo"
+    },
+    {
+      "entryDate": "2025-04-04",
+      "entryPrice": 71.86044975780636,
+      "exitDate": "2025-04-04",
+      "exitPrice": 74.26801600015868,
+      "amount": 1.3915860579363655,
+      "pnl": "3.35",
+      "pnlPercent": "3.35",
+      "result": "✅ lucro"
+    },
+    {
+      "entryDate": "2025-04-07",
+      "entryPrice": 59.66494057204072,
+      "exitDate": "2025-04-07",
+      "exitPrice": 62.58698552306494,
+      "amount": 1.6760261393247826,
+      "pnl": "4.90",
+      "pnlPercent": "4.90",
+      "result": "✅ lucro"
+    },
+    {
+      "entryDate": "2025-04-08",
+      "entryPrice": 66.35280160578371,
+      "exitDate": "2025-04-09",
+      "exitPrice": 64.71583110845744,
+      "amount": 1.507095368694777,
+      "pnl": "-2.47",
+      "pnlPercent": "-2.47",
+      "result": "❌ prejuízo"
+    },
+    {
+      "entryDate": "2025-04-09",
+      "entryPrice": 67.11565897881536,
+      "exitDate": "2025-04-09",
+      "exitPrice": 73.21396451079154,
+      "amount": 1.4899652558215122,
+      "pnl": "9.09",
+      "pnlPercent": "9.09",
+      "result": "✅ lucro"
+    },
+    {
+      "entryDate": "2025-04-10",
+      "entryPrice": 70.3997105219663,
+      "exitDate": "2025-04-11",
+      "exitPrice": 72.82115421109111,
+      "amount": 1.4204603862511302,
+      "pnl": "3.44",
+      "pnlPercent": "3.44",
+      "result": "✅ lucro"
+    }
+  ]
+}
