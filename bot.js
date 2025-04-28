@@ -20,26 +20,28 @@ async function main() {
 
       const currentPrice = await getCurrentPrice('chainlink', 'brl');
       console.log(`💹 Preço atual LINK/BRL: R$${currentPrice.toFixed(2)}`);
-      console.log(`🎯 Alvo: R$${targetSellPrice.toFixed(2)} | 🛑 Stop: R$${stopLossPrice.toFixed(2)}`);
+      console.log(`🎯 Alvo: R$${sellPrice.toFixed(2)} | 🛑 Stop: R$${stopLossPrice.toFixed(2)}`);
 
-      if (currentPrice >= targetSellPrice || currentPrice <= stopLossPrice) {
-        const reason = currentPrice >= targetSellPrice ? 'lucro' : 'stop loss';
-        const sellOrder = await createSellOrder(SYMBOL, sellPrice, amountToSell);
+      if (currentPrice >= sellPrice || currentPrice <= stopLossPrice) {
+        const reason = currentPrice >= sellPrice ? 'lucro' : 'stop loss';
+        const sellOrder = await createSellOrder(SYMBOL, currentPrice, amountToSell); // melhor usar currentPrice real
         console.log(`💼 Ordem de venda criada (${reason}):`, sellOrder);
 
-        await sendTelegramMessage(`💼 Venda a R$${priceNow.toFixed(2)} com ${status} de R$${pnl.toFixed(2)}`);
+        const pnl = (currentPrice - lastFilledBuy.price) * amountToSell; // calcula lucro/prejuízo
 
+        await saveOrder({
+          type: 'sell',
+          symbol: SYMBOL,
+          price: currentPrice,
+          amount: amountToSell,
+          status: sellOrder.status,
+          relatedBuyOrderId: lastFilledBuy._id,
+        });
 
-      await saveOrder({
-        type: 'sell',
-        symbol: SYMBOL,
-        price: sellPrice,
-        amount: amountToSell,
-        status: sellOrder.status,
-        relatedBuyOrderId: lastFilledBuy._id,
-      });
+        await sendTelegramMessage(`💼 Venda realizada a R$${currentPrice.toFixed(2)} com resultado de R$${pnl.toFixed(2)}.`);
 
-      return;
+        return;
+
       } else {
         console.log('⏳ Aguardando atingir alvo de venda ou stop loss...');
         return;
@@ -65,7 +67,7 @@ async function main() {
     const buyOrder = await createBuyOrder(SYMBOL, price);
     console.log(`🛒 Ordem de compra criada:`, buyOrder);
 
-    await sendTelegramMessage(`🛒 Compra realizada a R$${priceNow.toFixed(2)} (${symbol})`);
+    await sendTelegramMessage(`🛒 Compra realizada a R$${price.toFixed(2)} (${SYMBOL})`);
 
     await saveOrder({
       type: 'buy',
